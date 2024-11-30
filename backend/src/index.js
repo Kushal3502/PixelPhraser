@@ -28,6 +28,8 @@ app.listen(port, () => console.log(`Server is running on PORT :: ${port}`));
 
 // route imports
 import captionRouter from "./routes/caption.routes.js";
+import imageRouter from "./routes/image.routes.js";
 
 // routes
 app.use("/api/v1/caption", captionRouter);
+app.use("/api/v1/image", imageRouter);
