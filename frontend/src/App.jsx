@@ -7,7 +7,7 @@ function App() {
     <div className="h-screen">
       <div className=" w-full px-6 py-4">
         <Link to={"/"}>
-          <SparklesText text="PixelPhraser" className={"md:text-4xl text-xl "}/>
+          <SparklesText text="PixelPhraser" className={"md:text-3xl text-xl "}/>
         </Link>
       </div>
       <Outlet />
