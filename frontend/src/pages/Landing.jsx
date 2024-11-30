@@ -22,12 +22,11 @@ function Landing() {
         <div className="max-w-2xl mx-auto">
           <TypingAnimation
             text="Why settle for just an image when you can have a fully realized creative concept? Our AI generates stunning visuals and crafts engaging captions, taking your content creation to the next level."
-            duration={100}
+            duration={50}
             className="text-lg text-gray-400 mb-8 font-normal"
           />
         </div>
         <RainbowButton
-          className="px-8 py-3 text-lg font-medium shadow-lg hover:scale-105 transition-transform duration-300"
           onClick={() => {
             navigate("/home");
           }}
