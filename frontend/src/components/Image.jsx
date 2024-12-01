@@ -44,7 +44,7 @@ function Image() {
           <Button
             className="bg-indigo-700 hover:bg-indigo-800"
             onClick={() => handleImageGeneration(prompt)}
-            disabled={loader}
+            disabled={loader || !prompt?.trim()}
           >
             {loader ? (
               <>
