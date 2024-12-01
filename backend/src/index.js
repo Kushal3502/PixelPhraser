@@ -7,7 +7,7 @@ dotenv.config({
 });
 
 const port = process.env.PORT || 3000;
-const corsOptions = [process.env.CORS || "http://localhost:5173"];
+// const corsOptions = [process.env.CORS || "http://localhost:5173"];
 
 // initialize app
 const app = express();
@@ -15,7 +15,7 @@ const app = express();
 // middlewares
 app.use(
   cors({
-    origin: corsOptions,
+    origin: [process.env.CORS || "http://localhost:5173"],
     credentials: true,
   })
 );
