@@ -1,3 +1,4 @@
+import { Slider } from "@/components";
 import BlurIn from "@/components/ui/blur-in";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import SparklesText from "@/components/ui/sparkles-text";
@@ -9,8 +10,9 @@ function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div className="h-full my-auto flex flex-col justify-center items-center text-center px-4 py-16 ">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="relative h-full my-auto flex flex-col justify-center items-center text-center px-4 py-16 ">
+      {/* <Slider /> */}
+      <div className="relative z-10 max-w-4xl mx-auto space-y-6">
         <SparklesText
           text="PixelPhraser"
           className="text-3xl md:text-5xl font-bold"
