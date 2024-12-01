@@ -15,15 +15,15 @@ function Landing() {
           text="PixelPhraser"
           className="text-3xl md:text-5xl font-bold"
         />
-        <BlurIn
-          word="Your Complete Visual Content Toolkit"
+        <TypingAnimation
+          text="Your Complete Visual Content Toolkit"
+          duration={50}
           className="text-2xl md:text-4xl font-semibold text-gray-500 mb-4"
         />
         <div className="max-w-2xl mx-auto">
-          <TypingAnimation
-            text="Why settle for just an image when you can have a fully realized creative concept? Our AI generates stunning visuals and crafts engaging captions, taking your content creation to the next level."
-            duration={50}
-            className="text-lg text-gray-400 mb-8 font-normal"
+          <BlurIn
+            word="Why settle for just an image when you can have a fully realized creative concept? Our AI generates stunning visuals and crafts engaging captions, taking your content creation to the next level."
+            className="text-gray-400 mb-8 font-normal text-base md:text-lg"
           />
         </div>
         <RainbowButton
