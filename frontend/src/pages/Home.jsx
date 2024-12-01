@@ -7,13 +7,13 @@ function Home() {
   const [activeTab, setActiveTab] = useState("image");
 
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <div className="flex flex-col md:flex-row w-full mx-auto">
-        <div className="p-4 md:w-64 ">
-          <div className="flex md:flex-col flex-row gap-4 w-full">
+        <div className="p-4 w-full md:w-64">
+          <div className="flex md:flex-col sm:flex-row md:gap-4 gap-2 w-full">
             <Button
               onClick={() => setActiveTab("image")}
-              className={`flex items-center justify-center gap-2 w-full px-4 py-2 rounded transition-colors duration-300 ${
+              className={`flex items-center justify-center gap-2 w-full px-4 py-2 rounded transition-colors duration-300 md:text-base text-sm ${
                 activeTab === "image"
                   ? "bg-gray-200 text-black"
                   : "text-gray-400 hover:bg-gray-600 hover:text-white"

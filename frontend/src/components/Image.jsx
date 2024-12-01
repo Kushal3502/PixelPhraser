@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import axios from "axios";
-import { Loader2 } from "lucide-react";
+import { Download, Loader2 } from "lucide-react";
 
 function Image() {
   const [prompt, setPrompt] = useState("");
@@ -25,6 +25,15 @@ function Image() {
       console.error("Error generating image:", error);
     } finally {
       setLoader(false);
+    }
+  };
+
+  const handleDownload = () => {
+    if (imageUrl) {
+      const link = document.createElement("a");
+      link.href = imageUrl;
+      link.download = "generated-image.jpg";
+      link.click();
     }
   };
 
@@ -57,21 +66,32 @@ function Image() {
           </Button>
         </div>
       </div>
-      <div className="h-72 sm:h-96 w-full max-w-xs sm:max-w-md bg-zinc-950 rounded-lg flex justify-center items-center mx-auto mb-12 overflow-hidden">
-        {loader ? (
-          <img
-            src="/loader.gif"
-            className="h-full w-full"
-            alt="Generating image..."
-          />
-        ) : imageUrl ? (
-          <img
-            src={imageUrl}
-            className="object-cover h-full w-full"
-            alt="Generated image"
-          />
-        ) : (
-          <p className="text-gray-500 text-center">Here is your image</p>
+      <div className="flex flex-col items-center">
+        <div className="h-72 sm:h-96 w-full max-w-xs sm:max-w-md bg-zinc-950 rounded-lg flex justify-center items-center overflow-hidden">
+          {loader ? (
+            <img
+              src="/loader.gif"
+              className="h-full w-full"
+              alt="Generating image..."
+            />
+          ) : imageUrl ? (
+            <img
+              src={imageUrl}
+              className="object-cover h-full w-full"
+              alt="Generated image"
+            />
+          ) : (
+            <p className="text-gray-500 text-center">Here is your image</p>
+          )}
+        </div>
+        {imageUrl && (
+          <Button
+            className="mt-6 bg-indigo-600 hover:bg-indigo-700 flex items-center px-4 py-2 rounded"
+            onClick={handleDownload}
+          >
+            <Download className="mr-2" />
+            Download Image
+          </Button>
         )}
       </div>
     </div>

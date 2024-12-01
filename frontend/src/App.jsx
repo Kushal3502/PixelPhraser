@@ -4,13 +4,18 @@ import SparklesText from "./components/ui/sparkles-text";
 
 function App() {
   return (
-    <div className="h-screen flex flex-col justify-center">
-      <div className=" w-full px-6 py-4">
+    <div className="h-screen flex flex-col ">
+      <div className=" w-full px-6 py-4 h-16 flex items-center">
         <Link to={"/"}>
-          <SparklesText text="PixelPhraser" className={"md:text-3xl text-xl "}/>
+          <SparklesText
+            text="PixelPhraser"
+            className={"md:text-3xl text-xl "}
+          />
         </Link>
       </div>
-      <Outlet />
+      <div className="flex-grow">
+        <Outlet />
+      </div>
     </div>
   );
 }

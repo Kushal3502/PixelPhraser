@@ -3,6 +3,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
 import axios from "axios";
+import { CaptionCard } from ".";
 
 function Caption() {
   const [image, setImage] = useState(null);
@@ -12,8 +13,6 @@ function Caption() {
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    console.log(file);
-
     if (file) {
       setImage(file);
       setPreview(URL.createObjectURL(file));
@@ -22,7 +21,6 @@ function Caption() {
 
   const handleCaptionGeneration = async (image) => {
     setLoader(true);
-    console.log(image);
     try {
       const formData = new FormData();
       formData.append("image", image);
@@ -32,7 +30,6 @@ function Caption() {
         formData
       );
 
-      console.log(captionResponse.data);
       setCaptions(captionResponse.data.captions);
     } catch (error) {
       console.error("Error generating captions:", error);
@@ -42,11 +39,11 @@ function Caption() {
   };
 
   return (
-    <div className="bg-gray-900 rounded-lg p-6 flex flex-col gap-16 justify-center">
-      <h1 className="text-center text-2xl sm:text-3xl mt-10 sm:mt-20">
+    <div className="bg-gray-900 rounded-lg p-4 sm:p-6 flex flex-col gap-12 md:gap-12 justify-center">
+      <h1 className="text-center text-xl sm:text-2xl md:text-3xl text-white mt-6 sm:mt-10">
         Elevate your visuals with smart captions...
       </h1>
-      <div className="px-4 sm:px-16 lg:px-32">
+      <div className="px-4 md:px-20 lg:px-32">
         <div className="flex flex-col sm:flex-row gap-4">
           <Input
             type="file"
@@ -56,10 +53,10 @@ function Caption() {
             onChange={handleImageUpload}
           />
           <Button
-            className="bg-indigo-700 hover:bg-indigo-800"
-            onClick={() => {
-              handleCaptionGeneration(image);
-            }}
+            className={`bg-indigo-700 hover:bg-indigo-800 ${
+              loader || !image ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            onClick={() => handleCaptionGeneration(image)}
             disabled={loader || !image}
           >
             {loader ? (
@@ -73,27 +70,29 @@ function Caption() {
           </Button>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start px-4 sm:px-16 lg:px-32 gap-8 mt-10">
-        <div className="md:h-72 md:w-72 w-56 h-56 bg-zinc-950 rounded-lg overflow-hidden flex items-center justify-center">
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8 px-4 sm:px-8 md:px-16 lg:px-32 mt-8 sm:mt-10">
+        <div className="max-w-full md:max-w-md w-full lg:w-1/3 bg-zinc-950 rounded-lg overflow-hidden flex items-center justify-center aspect-square">
           {preview ? (
             <img
               src={preview}
               alt="Uploaded preview"
-              className="object-cover h-full w-full"
+              className="object-cover w-full h-full"
             />
           ) : (
-            <span className="text-gray-500">No image uploaded</span>
+            <span className="text-gray-500 text-center">No image uploaded</span>
           )}
         </div>
-        <div className="w-full lg:w-2/3 bg-zinc-950 rounded-lg p-6">
-          <h2 className="text-gray-300 text-lg font-semibold mb-4">
+        <div className="w-full lg:w-2/3 bg-zinc-950 rounded-lg p-4 md:p-6">
+          <h2 className="text-gray-300 text-base md:text-lg font-semibold mb-4">
             Generated Captions
           </h2>
-          <p className="text-gray-400">
-            {image
-              ? "Your generated captions will appear here after processing."
-              : "Please upload an image to generate captions."}
-          </p>
+          {captions.length > 0 ? (
+            captions.map((item, index) => (
+              <CaptionCard key={index} caption={item} />
+            ))
+          ) : (
+            <p className="text-gray-400 text-sm">No captions generated yet.</p>
+          )}
         </div>
       </div>
     </div>
