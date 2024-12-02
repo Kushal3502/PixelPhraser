@@ -32,6 +32,7 @@ function Image() {
     if (imageUrl) {
       const link = document.createElement("a");
       link.href = imageUrl;
+      link.target = "_blank";
       link.download = "generated-image.jpg";
       link.click();
     }
