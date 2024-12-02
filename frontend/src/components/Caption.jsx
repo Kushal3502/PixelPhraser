@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
 import axios from "axios";
 import { CaptionCard } from ".";
+import { Skeleton } from "./ui/skeleton";
 
 function Caption() {
   const [image, setImage] = useState(null);
@@ -22,6 +23,7 @@ function Caption() {
   const handleCaptionGeneration = async (image) => {
     setLoader(true);
     try {
+      setCaptions([]);
       const formData = new FormData();
       formData.append("image", image);
 
@@ -87,10 +89,32 @@ function Caption() {
           <h2 className="text-gray-300 text-base md:text-lg font-semibold mb-4">
             Generated Captions
           </h2>
-          {captions.length > 0 ? (
+          {captions.length > 0 &&
             captions.map((item, index) => (
               <CaptionCard key={index} caption={item} />
-            ))
+            ))}
+          {loader ? (
+            <div className="bg-gray-800 text-gray-300 mb-6 rounded-lg p-6 shadow-lg flex flex-col gap-4 sm:flex-row sm:justify-between">
+              <div className="flex-1 space-y-4">
+                <Skeleton className="h-5 w-full sm:w-3/4 bg-gray-600 rounded" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-20 bg-gray-600 rounded" />
+                  <div className="flex flex-wrap gap-2">
+                    {Array(3)
+                      .fill("")
+                      .map((_, index) => (
+                        <Skeleton
+                          key={index}
+                          className="h-6 w-16 bg-gray-600 rounded-full"
+                        />
+                      ))}
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center sm:items-start">
+                <Skeleton className="h-8 w-24 bg-indigo-600 rounded-lg" />
+              </div>
+            </div>
           ) : (
             <p className="text-gray-400 text-sm">No captions generated yet.</p>
           )}

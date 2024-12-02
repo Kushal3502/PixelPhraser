@@ -14,8 +14,8 @@ function ImageCard({ url }) {
 
 function Slider() {
   return (
-    <div className="absolute inset-0 z-0 opacity-15 top-4 lg:top-16">
-      <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg shadow-xl">
+    <div className="absolute inset-0 z-0 opacity-15 top-4 lg:top-16 ">
+      <div className="relative flex h-full max-w-7xl flex-col items-center justify-center overflow-hidden rounded-lg shadow-xl mx-auto">
         <Marquee className="[--duration:70s] mb-8 overflow-hidden">
           {firstRow.map((item, index) => (
             <ImageCard key={index} url={item} />
