@@ -13,6 +13,7 @@ function Image() {
     console.log(prompt);
     setLoader(true);
 
+    console.log(`${import.meta.env.VITE_BACKEND_URL}/api/v1/image/`);
     try {
       const imageResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/image/`,
