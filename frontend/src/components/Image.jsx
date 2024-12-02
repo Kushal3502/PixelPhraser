@@ -17,7 +17,8 @@ function Image() {
     try {
       const imageResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/image/`,
-        { prompt }
+        { prompt },
+        { withCredentials: true }
       );
 
       console.log(imageResponse.data);

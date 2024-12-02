@@ -27,7 +27,8 @@ function Caption() {
 
       const captionResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/caption/`,
-        formData
+        formData,
+        { withCredentials: true }
       );
 
       setCaptions(captionResponse.data.captions);
