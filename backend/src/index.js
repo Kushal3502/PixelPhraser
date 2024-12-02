@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 
 // initialize app
 const app = express();
-
+console.log(process.env.CORS)
 // middlewares
 app.use(
   cors({
