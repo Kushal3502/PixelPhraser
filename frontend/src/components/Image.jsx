@@ -10,10 +10,9 @@ function Image() {
   const [loader, setLoader] = useState(false);
 
   const handleImageGeneration = async (prompt) => {
-    console.log(prompt);
     setLoader(true);
+    setImageUrl("");
 
-    console.log(`${import.meta.env.VITE_BACKEND_URL}/api/v1/image/`);
     try {
       const imageResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/image/`,
@@ -21,7 +20,7 @@ function Image() {
         { withCredentials: true }
       );
 
-      console.log(imageResponse.data);
+      // console.log(imageResponse.data);
       setImageUrl(imageResponse.data.image);
     } catch (error) {
       console.error("Error generating image:", error);

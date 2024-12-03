@@ -20,9 +20,6 @@ export const generateImage = async (req, res) => {
     )}?seed=${seed}&model=${model}&nologo=${nologo}`;
 
     await axios.get(imageUrl);
-    // const base64Image = Buffer.from(response.data, "binary").toString("base64");
-
-    // console.log(base64Image);
 
     res.json({
       success: true,
