@@ -6,22 +6,26 @@ const secondRow = images.slice(images.length / 2);
 
 function ImageCard({ url }) {
   return (
-    <div className="md:w-96 md:h-80 w-80 h-64 mx-4">
-      <img src={url} className="h-full w-full object-cover rounded-lg shadow-lg" />
+    <div className="relative flex-shrink-0 w-64 h-48 md:w-80 md:h-60 lg:w-96 lg:h-72 mx-4">
+      <img
+        src={url}
+        alt="Card"
+        className="h-full w-full object-cover rounded-lg "
+      />
     </div>
   );
 }
 
 function Slider() {
   return (
-    <div className="absolute inset-0 z-0 opacity-15 top-4 lg:top-16 ">
+    <div className="absolute inset-0 z-0 opacity-15 top-0 lg:top-0 flex items-center">
       <div className="relative flex h-full max-w-7xl flex-col items-center justify-center overflow-hidden rounded-lg shadow-xl mx-auto">
-        <Marquee className="[--duration:70s] mb-8 overflow-hidden">
+        <Marquee className="[--duration:70s] mb-8 flex gap-4">
           {firstRow.map((item, index) => (
             <ImageCard key={index} url={item} />
           ))}
         </Marquee>
-        <Marquee reverse className="[--duration:70s]">
+        <Marquee reverse className="[--duration:70s] flex gap-4">
           {secondRow.map((item, index) => (
             <ImageCard key={index} url={item} />
           ))}
